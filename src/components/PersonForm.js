@@ -97,7 +97,7 @@ const PersonForm = () => {
       residence,
     } = personData;
 
-    let ret = { message: "", valid: false };
+    let ret = { message: "", valid: true };
 
     if (
       jmbg === "" ||

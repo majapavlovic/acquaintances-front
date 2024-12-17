@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import PersonList from "./components/PersonList";
-import PersonForm from "./components/PersonForm";
+import PersonList from "./components/PersonList.js";
+import PersonForm from "./components/PersonForm.js";
 
 const App = () => {
   return (

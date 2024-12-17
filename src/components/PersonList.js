@@ -20,10 +20,15 @@ const PersonList = () => {
   };
 
   const handleDeletePerson = (id) => {
+    const confirmDelete = window.confirm("Da li ste sigurni?");
+    if (!confirmDelete) return;
+
     axios
       .delete(`http://localhost:8080/api/v2/tps/person/id/${id}`)
       .then(() => {
-        setPersons(persons.filter((person) => person.id !== id));
+        setPersons((prevPersons) =>
+          prevPersons.filter((person) => person.id !== id)
+        );
       })
       .catch((error) =>
         console.error("There was an error deleting the person!", error)

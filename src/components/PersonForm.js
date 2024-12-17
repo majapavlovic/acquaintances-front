@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
+import { Alert } from "react-bootstrap";
 
 const PersonForm = () => {
   const [editing, setEditing] = useState(false);
   const { jmbg } = useParams();
+  const [error, setError] = useState("");
   const [personData, setPersonData] = useState({
     jmbg: "",
     name: "",
@@ -29,11 +31,11 @@ const PersonForm = () => {
 
   useEffect(() => {
     if (jmbg) {
+      setEditing(true);
       axios
         .get(`http://localhost:8080/api/v2/tps/person/jmbg/${jmbg}`)
         .then((response) => {
           handlePersonData(response.data);
-          setEditing(true);
         })
         .catch((error) =>
           console.error("There was an error fetching the person!", error)
@@ -56,6 +58,7 @@ const PersonForm = () => {
   };
 
   const handleChange = (name, value) => {
+    setError("");
     const updatedData = { ...personData, [name]: value };
     setPersonData(updatedData);
   };
@@ -78,10 +81,10 @@ const PersonForm = () => {
         })
         .catch((error) => {
           const { code, message } = error.response.data;
-          alert(`Doslo je do greske: ${code}, ${message}`);
+          setError(`Doslo je do greske: ${code}, ${message}`);
         });
     } else {
-      alert("Nevalidan unos: " + message);
+      setError(`Nevalidan unos: ${message}`);
     }
   };
 
@@ -131,12 +134,15 @@ const PersonForm = () => {
       <h1 className='text-center mb-4'>
         {editing ? "Edit Person" : "Add Person"}
       </h1>
+
+      {error && <Alert variant='danger'>{error}</Alert>}
+
       <form onSubmit={handleSubmit}>
         <table className='table table-striped table-hover'>
           <tbody>
             <tr>
               <td>
-                <label>JMBG:</label>
+                <label htmlFor='jmbg'>JMBG:</label>
               </td>
               <td>
                 <input
@@ -151,7 +157,7 @@ const PersonForm = () => {
             </tr>
             <tr>
               <td>
-                <label>Ime:</label>
+                <label htmlFor='name'>Ime:</label>
               </td>
               <td>
                 <input
@@ -166,7 +172,7 @@ const PersonForm = () => {
             </tr>
             <tr>
               <td>
-                <label>Prezime:</label>
+                <label htmlFor='surname'>Prezime:</label>
               </td>
               <td>
                 <input
@@ -181,7 +187,7 @@ const PersonForm = () => {
             </tr>
             <tr>
               <td>
-                <label>Datum rodjenja:</label>
+                <label htmlFor='birthdate'>Datum rodjenja:</label>
               </td>
               <td>
                 <input
@@ -196,7 +202,7 @@ const PersonForm = () => {
             </tr>
             <tr>
               <td>
-                <label>Starost u mesecima:</label>
+                <label htmlFor='ageInMonths'>Starost u mesecima:</label>
               </td>
               <td>
                 <input
@@ -211,7 +217,7 @@ const PersonForm = () => {
             </tr>
             <tr>
               <td>
-                <label>Visina:</label>
+                <label htmlFor='heightInCm'>Visina:</label>
               </td>
               <td>
                 <input
@@ -226,7 +232,7 @@ const PersonForm = () => {
             </tr>
             <tr>
               <td>
-                <label>Mesto rodjenja:</label>
+                <label htmlFor='cityOfBirth'>Mesto rodjenja:</label>
               </td>
               <td>
                 <select
@@ -246,7 +252,7 @@ const PersonForm = () => {
             </tr>
             <tr>
               <td>
-                <label>Prebivaliste:</label>
+                <label htmlFor='residence'>Prebivaliste:</label>
               </td>
               <td>
                 <select

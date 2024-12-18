@@ -41,7 +41,7 @@ const PersonList = () => {
 
   return (
     <div className='container mt-4'>
-      <h1 className='text-center mb-4'>Person List</h1>
+      <h1 className='text-center mb-4'>Podaci o poznanicima</h1>
       <table className='table table-striped table-hover'>
         <thead className='thead-dark'>
           <tr>

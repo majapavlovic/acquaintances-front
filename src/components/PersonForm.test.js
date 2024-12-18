@@ -200,11 +200,12 @@ describe("PersonForm", () => {
       },
       {
         id: 2,
-        name: "Novi Sad",
-        ptt: 21000,
+        name: "Kragujevac",
+        ptt: 34000,
         regionCode: "72",
-        citizens: 300000,
+        citizens: 147786,
       },
+      ,
     ]);
 
     render(
@@ -234,10 +235,10 @@ describe("PersonForm", () => {
       },
       {
         id: 2,
-        name: "Novi Sad",
-        ptt: 21000,
+        name: "Kragujevac",
+        ptt: 34000,
         regionCode: "72",
-        citizens: 300000,
+        citizens: 147786,
       },
     ]);
 

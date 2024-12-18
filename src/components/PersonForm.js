@@ -131,9 +131,7 @@ const PersonForm = () => {
 
   return (
     <div className='container mt-4'>
-      <h1 className='text-center mb-4'>
-        {editing ? "Edit Person" : "Add Person"}
-      </h1>
+      <h1 className='text-center mb-4'>Lični podaci</h1>
 
       {error && <Alert variant='danger'>{error}</Alert>}
 
